@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useState, useEffect } from 'react'
+import sportseeData from './data/data.js'
+import Header from './components/Header'
+import Aside from './components/Aside'
+import MainWrapper from './components/MainWrapper'
 
 function App() {
+
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  useEffect(() => {
+
+    if (sportseeData) {
+      setData(sportseeData)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sportseeData])
+
+  console.log(data)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>My react project</h1>
+      <Header /><Aside /><MainWrapper />
+    </>
   );
 }
 
