@@ -10,8 +10,7 @@ function App() {
 
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+
 
   useEffect(() => {
 
@@ -22,11 +21,11 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sportseeData])
 
-  console.log(data)
+  console.log(sportseeData)
 
   return (
     <>
-      <Header /><MainWrapper />
+      <Header /><MainWrapper data={sportseeData} />
     </>
   );
 }

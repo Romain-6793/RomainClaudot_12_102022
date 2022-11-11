@@ -6,10 +6,11 @@ import MainInfo from './MainInfo'
 import NutritionInfo from './NutritionInfo'
 
 
-function Hero() {
+function Hero(props) {
+
     return (
         <div className="hero">
-            <Banner /><MainInfo /><NutritionInfo />
+            <Banner data={props.data} /><MainInfo data={props.data} /><NutritionInfo data={props.data} />
         </div>
     )
 }

@@ -8,10 +8,13 @@ import Skills from './Skills'
 import Score from './Score'
 
 
-function MainInfo() {
+function MainInfo(props) {
     return (
         <div className="main-info">
-            <Activity /><Duration /><Skills /><Score />
+            <Activity data={props.data} />
+            <Duration data={props.data} />
+            <Skills data={props.data} />
+            <Score data={props.data} />
         </div>
     )
 }
