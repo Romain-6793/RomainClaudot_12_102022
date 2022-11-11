@@ -1,0 +1,11 @@
+
+.hero {
+    height: 933px;
+    width: 91.78%;
+    border: 1px solid cyan;
+    display: flex;
+    flex-flow: row wrap;
+    /* padding-top: 67px;
+    padding-right: 90px;
+    padding-left: 109px; */
+}

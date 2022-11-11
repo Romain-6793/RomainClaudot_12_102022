@@ -1,9 +1,9 @@
 
 import './App.css';
+import './normalize.css'
 import { useState, useEffect } from 'react'
 import sportseeData from './data/data.js'
 import Header from './components/Header'
-import Aside from './components/Aside'
 import MainWrapper from './components/MainWrapper'
 
 function App() {
@@ -26,8 +26,7 @@ function App() {
 
   return (
     <>
-      <h1>My react project</h1>
-      <Header /><Aside /><MainWrapper />
+      <Header /><MainWrapper />
     </>
   );
 }

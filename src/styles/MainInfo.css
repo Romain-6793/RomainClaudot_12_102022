@@ -1,0 +1,10 @@
+
+.main-info {
+    width: 840px;
+    height: 620px;
+    border: 1px solid purple;
+    margin-left: 107px;
+    margin-right: 31px;
+    display: flex;
+    flex-flow: row wrap;
+}
