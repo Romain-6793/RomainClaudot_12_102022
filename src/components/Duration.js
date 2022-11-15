@@ -1,10 +1,17 @@
 
 import '../styles/Duration.css'
+import DayDuration from './DayDuration'
 
 
-function Duration() {
+function Duration(props) {
+
+    const data = props.data
+    const sessions = data.USER_AVERAGE_SESSIONS[0].sessions
+
     return (
-        <div className="duration"></div>
+        <div className="duration">{sessions.map((index) => (
+            <DayDuration data={data} day={index.day} length={index.sessionLength} key={`${index}-${index.day}`} />
+        ))}</div>
     )
 
 }

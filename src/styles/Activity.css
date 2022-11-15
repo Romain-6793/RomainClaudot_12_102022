@@ -4,5 +4,7 @@
     height: 320px;
     margin-bottom: 32px;
     border: 1px solid red;
+    display: flex;
+    flex-flow: row wrap;
 
 }
