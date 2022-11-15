@@ -1,5 +1,5 @@
 
-import '../styles/NutritionInfo.css'
+import '../../../styles/Hero/NutritionInfo/NutritionInfo.css'
 
 import NutritionCard from './NutritionCard'
 

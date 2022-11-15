@@ -1,5 +1,5 @@
 
-import '../styles/NutritionCard.css'
+import '../../../styles/Hero/NutritionInfo/NutritionCard.css'
 
 function NutritionCard(props) {
     return (

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import sportseeData from './data/data.js'
 import Header from './components/Header'
 import MainWrapper from './components/MainWrapper'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 

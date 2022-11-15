@@ -1,6 +1,6 @@
 
 
-import '../styles/Activity.css'
+import '../../../styles/Hero/MainInfo/Activity.css'
 import DayActivity from './DayActivity'
 import { useEffect } from 'react'
 

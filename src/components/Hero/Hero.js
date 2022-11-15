@@ -1,9 +1,9 @@
 
-import '../styles/Hero.css'
+import '../../styles/Hero/Hero.css'
 
 import Banner from './Banner'
-import MainInfo from './MainInfo'
-import NutritionInfo from './NutritionInfo'
+import MainInfo from './MainInfo/MainInfo'
+import NutritionInfo from './NutritionInfo/NutritionInfo'
 
 
 function Hero(props) {

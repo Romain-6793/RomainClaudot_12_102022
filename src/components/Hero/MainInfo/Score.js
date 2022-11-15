@@ -1,5 +1,5 @@
 
-import '../styles/Score.css'
+import '../../../styles/Hero/MainInfo/Score.css'
 
 function Score(props) {
 

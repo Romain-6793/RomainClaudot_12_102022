@@ -1,6 +1,6 @@
 
 
-import '../styles/Skills.css'
+import '../../../styles/Hero/MainInfo/Skills.css'
 import Skill from './Skill'
 
 

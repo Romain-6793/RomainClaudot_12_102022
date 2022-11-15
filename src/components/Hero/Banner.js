@@ -1,5 +1,5 @@
 
-import '../styles/Banner.css'
+import '../../styles/Hero/Banner.css'
 import { useState } from 'react'
 
 function Banner(props) {

@@ -1,5 +1,5 @@
 
-import '../styles/Duration.css'
+import '../../../styles/Hero/MainInfo/Duration.css'
 import DayDuration from './DayDuration'
 
 

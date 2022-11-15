@@ -1,6 +1,6 @@
 
 
-import '../styles/MainInfo.css'
+import '../../../styles/Hero/MainInfo/MainInfo.css'
 
 import Activity from './Activity'
 import Duration from './Duration'
