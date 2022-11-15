@@ -1,9 +1,15 @@
 
 import '../styles/Nav.css'
 import { useState } from 'react'
-// import { Link } from 'react-router-dom'
+import Linking from './Linking'
 
-function Nav() {
+function Nav(props) {
+
+    const data = props.data
+    const userdata = data.USER_MAIN_DATA
+    console.log(data)
+    console.log(userdata)
+    console.log(data.USER_MAIN_DATA.userInfos)
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -17,8 +23,9 @@ function Nav() {
                 <button>Communauté</button>
             </nav>
             <div className="profile-dropdown">
-                <span>Karl</span>
-                <span>Cecilia</span>
+                {userdata.map((index) => (
+                    <Linking data={data} firstName={index.userInfos.firstName} key={index.id} id={index.id} />
+                ))}
             </div>
         </>
     ) : (

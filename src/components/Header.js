@@ -3,9 +3,9 @@
 import '../styles/Header.css'
 import Nav from './Nav'
 
-function Header() {
+function Header(props) {
     return (
-        <header className="header"><Nav /></header>
+        <header className="header"><Nav data={props.data} /></header>
     )
 
 }

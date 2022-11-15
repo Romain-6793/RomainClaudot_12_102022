@@ -3,9 +3,9 @@ import './App.css';
 import './normalize.css'
 import { useState, useEffect } from 'react'
 import sportseeData from './data/data.js'
-import Header from './components/Header'
-import MainWrapper from './components/MainWrapper'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './pages/Layout';
+import Main from './pages/Main'
 
 function App() {
 
@@ -25,9 +25,14 @@ function App() {
   console.log(sportseeData)
 
   return (
-    <>
-      <Header /><MainWrapper data={sportseeData} />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout data={sportseeData} />}>
+          <Route index element={<Main data={sportseeData} />}></Route>
+          <Route path="main/:id" element={<Main data={sportseeData} />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
