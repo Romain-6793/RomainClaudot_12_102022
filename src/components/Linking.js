@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 function Linking(props) {
 
     const firstName = props.firstName
-    console.log(firstName)
+    const id = props.id
 
     return (
-        <Link to>{firstName}</Link>
+        <Link to={`/main/${id}`}>{firstName}</Link>
     )
 }
 

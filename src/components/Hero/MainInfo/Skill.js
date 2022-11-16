@@ -8,7 +8,6 @@ function Skill(props) {
 
     const data = props.data
     const skillkind = data.USER_PERFORMANCE[0].kind
-    console.log(skillkind)
     let value = useRef(skillkind[props.kind])
 
     useEffect(() => {

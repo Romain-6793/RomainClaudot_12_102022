@@ -7,9 +7,6 @@ function Nav(props) {
 
     const data = props.data
     const userdata = data.USER_MAIN_DATA
-    console.log(data)
-    console.log(userdata)
-    console.log(data.USER_MAIN_DATA.userInfos)
 
     const [isOpen, setIsOpen] = useState(false)
 
