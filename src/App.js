@@ -22,8 +22,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sportseeData])
 
-  console.log(sportseeData)
-
   return (
     <BrowserRouter>
       <Routes>
