@@ -3,8 +3,8 @@ import '../../../styles/Hero/MainInfo/Score.css'
 
 function Score(props) {
 
-    const data = props.data
-    const score = data.USER_MAIN_DATA[0].todayScore
+
+    const score = props.score
 
     return (
         <div className="score">

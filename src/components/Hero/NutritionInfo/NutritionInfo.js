@@ -6,11 +6,11 @@ import NutritionCard from './NutritionCard'
 
 function NutritionInfo(props) {
 
-    const data = props.data
-    const calorieCount = data.USER_MAIN_DATA[0].keyData.calorieCount
-    const proteinCount = data.USER_MAIN_DATA[0].keyData.proteinCount
-    const carbohydrateCount = data.USER_MAIN_DATA[0].keyData.carbohydrateCount
-    const lipidCount = data.USER_MAIN_DATA[0].keyData.lipidCount
+    const keyData = props.keyData.current
+    const calorieCount = keyData.calorieCount
+    const proteinCount = keyData.proteinCount
+    const carbohydrateCount = keyData.carbohydrateCount
+    const lipidCount = keyData.lipidCount
 
     //Mettre également l'image dans les props
 

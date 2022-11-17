@@ -6,17 +6,17 @@ import Skill from './Skill'
 
 function Skills(props) {
 
-    const data = props.data
-    const skilldata = data.USER_PERFORMANCE[0].data
-
-
+    const skillData = props.skillData
+    const skillKind = props.skillKind
 
     return (
-        <div className="skills">{skilldata.map((index) => (
-            <Skill data={data}
+        <div className="skills">{skillData.map((index) => (
+            <Skill
                 value={index.value}
                 kind={index.kind}
-                key={`${index}-${index.value}-${index.kind}`} />
+                key={`${index}-${index.value}-${index.kind}`}
+                skillKind={skillKind}
+            />
         ))}</div>
     )
 

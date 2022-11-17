@@ -6,9 +6,8 @@ import { useEffect, useRef } from 'react'
 function Skill(props) {
 
 
-    const data = props.data
-    const skillkind = data.USER_PERFORMANCE[0].kind
-    let value = useRef(skillkind[props.kind])
+    const skillKind = props.skillKind
+    let value = useRef(skillKind[props.kind])
 
     useEffect(() => {
 

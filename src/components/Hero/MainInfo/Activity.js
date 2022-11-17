@@ -7,14 +7,14 @@ import { useEffect } from 'react'
 
 function Activity(props) {
 
-    const data = props.data
-    const sessions = data.USER_ACTIVITY[0].sessions
+
+    const activitySessions = props.activitySessions
 
     useEffect(() => {
         let highestWeight = 0
         let lowestWeight = 0
         let middleWeight = 0
-        let weightArray = [sessions.map((index) => (index.kilogram))]
+        let weightArray = [activitySessions.map((index) => (index.kilogram))]
 
 
         highestWeight = Math.max(...weightArray[0])
@@ -27,8 +27,13 @@ function Activity(props) {
     }, [])
 
     return (
-        <div className="activity">{sessions.map((index) => (
-            <DayActivity data={data} day={index.day} kilogram={index.kilogram} calories={index.calories} key={`${index}-${index.day}`} />
+        <div className="activity">{activitySessions.map((index) => (
+            <DayActivity
+                day={index.day}
+                kilogram={index.kilogram}
+                calories={index.calories}
+                key={`${index}-${index.day}`}
+            />
         ))}</div>
     )
 
