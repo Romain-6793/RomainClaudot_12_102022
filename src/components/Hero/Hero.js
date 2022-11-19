@@ -14,10 +14,13 @@ function Hero(props) {
 
     const data = props.data
 
+    const BASIC_URL = `http://localhost:3000`
+
+    const [loading, setLoading] = useState(false)
+
+    const [basicUser, setUser] = useState(data.USER_MAIN_DATA[0])
     // Ou bien mettre un objet vide dans le useState ou data.USER_MAIN_DATA[0]. Tout dépend du choix.
     // Il faudra peut-être supprimer le DD.
-    const [loading, setLoading] = useState(false)
-    const [basicUser, setUser] = useState(data.USER_MAIN_DATA[0])
     let firstName = useRef(data.USER_MAIN_DATA[0].userInfos.firstName)
     let keyData = useRef(data.USER_MAIN_DATA[0].keyData)
     let score = useRef(data.USER_MAIN_DATA[0].todayScore)
@@ -53,9 +56,9 @@ function Hero(props) {
 
             if (user) {
                 setUser(user);
-                setActivity(activity);
-                setSessions(avSessions);
-                setSkills(skills);
+                // setActivity(activity);
+                // setSessions(avSessions);
+                // setSkills(skills);
                 firstName.current = user[0].userInfos.firstName
                 activitySessions.current = activity[0].sessions
                 averageSessions.current = avSessions[0].sessions
