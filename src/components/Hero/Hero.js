@@ -14,7 +14,7 @@ function Hero(props) {
 
     const data = props.data
 
-    const BASIC_URL = `http://localhost:3000`
+    const BASE_URL = `http://localhost:3000`
 
     const [loading, setLoading] = useState(false)
 
@@ -49,10 +49,18 @@ function Hero(props) {
         // setLoading(true);
         if (id) {
             const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
-            // getUser();
+
             const activity = data.USER_ACTIVITY.filter(item => item.userId === Number(id))
             const avSessions = data.USER_AVERAGE_SESSIONS.filter(item => item.userId === Number(id))
             const skills = data.USER_PERFORMANCE.filter(item => item.userId === Number(id))
+
+            const getUser = async () => {
+                const user = await getUser(`${BASE_URL}/user/${id}`);
+                if (user) setUser(user)
+                setLoading(false)
+            }
+
+            getUser()
 
             if (user) {
                 setUser(user);
