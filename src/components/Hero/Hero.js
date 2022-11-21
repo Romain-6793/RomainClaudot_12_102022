@@ -48,35 +48,40 @@ function Hero(props) {
     useEffect(() => {
         // setLoading(true);
         if (id) {
-            const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
+            // const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
 
             const activity = data.USER_ACTIVITY.filter(item => item.userId === Number(id))
             const avSessions = data.USER_AVERAGE_SESSIONS.filter(item => item.userId === Number(id))
             const skills = data.USER_PERFORMANCE.filter(item => item.userId === Number(id))
 
             const getUser = async () => {
-                const user = await getUser(`${BASE_URL}/user/${id}`);
-                if (user) setUser(user)
-                setLoading(false)
+                const user = await fetch(`${BASE_URL}/user/18`).then(
+                    res => setUser(res.user)
+                );
+                if (user) {
+                    setUser(user)
+                    console.log(user)
+                    setLoading(false)
+                }
             }
 
             getUser()
 
-            if (user) {
-                setUser(user);
-                // setActivity(activity);
-                // setSessions(avSessions);
-                // setSkills(skills);
-                firstName.current = user[0].userInfos.firstName
-                activitySessions.current = activity[0].sessions
-                averageSessions.current = avSessions[0].sessions
-                skillData.current = skills[0].data
-                skillKind.current = skills[0].kind
-                score.current = user[0].todayScore || user[0].score
-                keyData.current = user[0].keyData
+            // if (user) {
+            //     setUser(user);
+            //     // setActivity(activity);
+            //     // setSessions(avSessions);
+            //     // setSkills(skills);
+            //     firstName.current = user[0].userInfos.firstName
+            //     activitySessions.current = activity[0].sessions
+            //     averageSessions.current = avSessions[0].sessions
+            //     skillData.current = skills[0].data
+            //     skillKind.current = skills[0].kind
+            //     score.current = user[0].todayScore || user[0].score
+            //     keyData.current = user[0].keyData
 
-            }
-            setLoading(false);
+            // }
+            // setLoading(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
