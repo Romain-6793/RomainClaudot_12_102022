@@ -15,10 +15,76 @@ function Hero(props) {
     const data = props.data
 
     const BASE_URL = `http://localhost:3000`
+    const { id } = useParams()
 
+    const [data2, setData2] = useState({})
     const [loading, setLoading] = useState(false)
+    const [hasError, setHasError] = useState(false)
 
-    const [basicUser, setUser] = useState(data.USER_MAIN_DATA[0])
+
+    useEffect(() => {
+        setLoading(true)
+        fetch(`${BASE_URL}/user/${id}`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then(
+                (res) => setData2(res)
+            )
+            .catch(err => {
+                setHasError(true)
+                setLoading(false)
+            });
+
+        setLoading(false)
+        console.log(data2)
+
+    }, [id])
+
+    // useEffect(() => {
+    //     // setLoading(true);
+    //     if (id) {
+    //         // const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
+
+    //         const activity = data.USER_ACTIVITY.filter(item => item.userId === Number(id))
+    //         const avSessions = data.USER_AVERAGE_SESSIONS.filter(item => item.userId === Number(id))
+    //         const skills = data.USER_PERFORMANCE.filter(item => item.userId === Number(id))
+
+    //         const getUser = async () => {
+    //             const user = await fetch(`${BASE_URL}/user/18`).then(
+    //                 res => setUser(res.user)
+    //             );
+    //             if (user) {
+    //                 setUser(user)
+    //                 console.log(user)
+    //                 setLoading(false)
+    //             }
+    //         }
+
+    //         getUser()
+
+    //         // if (user) {
+    //         //     setUser(user);
+    //         //     // setActivity(activity);
+    //         //     // setSessions(avSessions);
+    //         //     // setSkills(skills);
+    //         //     firstName.current = user[0].userInfos.firstName
+    //         //     activitySessions.current = activity[0].sessions
+    //         //     averageSessions.current = avSessions[0].sessions
+    //         //     skillData.current = skills[0].data
+    //         //     skillKind.current = skills[0].kind
+    //         //     score.current = user[0].todayScore || user[0].score
+    //         //     keyData.current = user[0].keyData
+
+    //         // }
+    //         // setLoading(false);
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [id])
+
+
     // Ou bien mettre un objet vide dans le useState ou data.USER_MAIN_DATA[0]. Tout dépend du choix.
     // Il faudra peut-être supprimer le DD.
     let firstName = useRef(data.USER_MAIN_DATA[0].userInfos.firstName)
@@ -37,7 +103,7 @@ function Hero(props) {
     let skillKind = useRef(data.USER_PERFORMANCE[0].kind)
 
 
-    const { id } = useParams()
+
 
     // const getUser = async () => {
     //     const user = await getUser(`${BASE_URL}/user/${id}`);
@@ -45,56 +111,15 @@ function Hero(props) {
     //      setLaoding(false)
     // }
 
-    useEffect(() => {
-        // setLoading(true);
-        if (id) {
-            // const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
-
-            const activity = data.USER_ACTIVITY.filter(item => item.userId === Number(id))
-            const avSessions = data.USER_AVERAGE_SESSIONS.filter(item => item.userId === Number(id))
-            const skills = data.USER_PERFORMANCE.filter(item => item.userId === Number(id))
-
-            const getUser = async () => {
-                const user = await fetch(`${BASE_URL}/user/18`).then(
-                    res => setUser(res.user)
-                );
-                if (user) {
-                    setUser(user)
-                    console.log(user)
-                    setLoading(false)
-                }
-            }
-
-            getUser()
-
-            // if (user) {
-            //     setUser(user);
-            //     // setActivity(activity);
-            //     // setSessions(avSessions);
-            //     // setSkills(skills);
-            //     firstName.current = user[0].userInfos.firstName
-            //     activitySessions.current = activity[0].sessions
-            //     averageSessions.current = avSessions[0].sessions
-            //     skillData.current = skills[0].data
-            //     skillKind.current = skills[0].kind
-            //     score.current = user[0].todayScore || user[0].score
-            //     keyData.current = user[0].keyData
-
-            // }
-            // setLoading(false);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id])
 
 
-    if (!basicUser) {
+
+    if (hasError) {
         return <div>No user to display</div>
     }
-
     if (loading) {
         return <div>Loading...</div>
     }
-
     return (
         <div className="hero">
             <Banner firstName={firstName} />
