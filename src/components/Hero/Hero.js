@@ -12,6 +12,14 @@ import { useState, useEffect, useRef } from 'react'
 function Hero(props) {
 
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
+    const { id } = useParams()
+    const BASE_URL = `http://localhost:3000/user/${id}`
+    const URLS = [
+        BASE_URL,
+        `${BASE_URL}/activity`,
+        `${BASE_URL}/average-sessions`,
+        `${BASE_URL}/performance`
+    ]
 
     const data = props.data
 
@@ -24,47 +32,44 @@ function Hero(props) {
     let averageSessions = useRef(data.USER_AVERAGE_SESSIONS[0].sessions)
     let skillData = useRef(data.USER_PERFORMANCE[0].data)
     let skillKind = useRef(data.USER_PERFORMANCE[0].kind)
-    const BASE_URL = `http://localhost:3000`
-    const { id } = useParams()
+
+
     // eslint-disable-next-line no-unused-vars
-    const [response, loading, hasError] = useFetch(`${BASE_URL}/user/${id}`)
-    // || (`${BASE_URL}/user/${id}/activity`)
-    // || (`${BASE_URL}/user/${id}/average-sessions`)
-    // || (`${BASE_URL}/user/${id}/performance`)
+    const [response, loading, hasError] = useFetch(BASE_URL, URLS)
+
     console.log(response)
-    // firstName.current = response.data.userInfos.firstName
-    // console.log(firstName.current)
 
 
-    function useFetch(url, opts) {
+
+    function useFetch(url, urls) {
         const [response, setResponse] = useState(null)
         const [loading, setLoading] = useState(false)
         const [hasError, setHasError] = useState(false)
         useEffect(() => {
             setLoading(true)
-            fetch(url, opts)
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }
-                })
-                .then((res) => {
-                    setResponse(res)
-                    console.log(res)
+            Promise.all(urls.map(url =>
+                fetch(url)
+                    .then(res => res.json())
+            ))
+                .then((data) => {
+                    setResponse(data)
+                    setHasError(false)
                     setLoading(false)
-                    firstName.current = res.data.userInfos.firstName
-                    // activitySessions.current = activity[0].sessions
-                    // averageSessions.current = avSessions[0].sessions
-                    // skillData.current = skills[0].data
-                    // skillKind.current = skills[0].kind
-                    score.current = res.data.todayScore || res.data.score
-                    keyData.current = res.data.keyData
-                }
-                )
+                    firstName.current = response[0].data.userInfos.firstName
+                    activitySessions.current = response[1].data.sessions
+                    averageSessions.current = response[2].data.sessions
+                    skillData.current = response[3].data.data
+                    skillKind.current = response[3].data.kind
+                    score.current = response[0].data.todayScore || response[0].data.score
+                    keyData.current = response[0].data.keyData
+
+                })
                 .catch(err => {
                     setHasError(true)
                     setLoading(false)
-                });
+                })
+
+
 
         }, [url])
 
