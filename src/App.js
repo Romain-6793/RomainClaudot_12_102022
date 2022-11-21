@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout data={sportseeData} />}>
           <Route index element={<Main data={sportseeData} />}></Route>
-          <Route path="main/:id" element={<Main data={sportseeData} />}></Route>
+          <Route path="user/:id" element={<Main data={sportseeData} />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

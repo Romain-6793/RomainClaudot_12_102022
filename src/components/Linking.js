@@ -7,7 +7,7 @@ function Linking(props) {
     const id = props.id
 
     return (
-        <Link to={`/main/${id}`}>{firstName}</Link>
+        <Link to={`/user/${id}`}>{firstName}</Link>
     )
 }
 
