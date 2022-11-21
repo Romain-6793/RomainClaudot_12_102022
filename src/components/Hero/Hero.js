@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import '../../styles/Hero/Hero.css'
 
@@ -13,35 +14,42 @@ function Hero(props) {
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
 
     const data = props.data
-
     const BASE_URL = `http://localhost:3000`
     const { id } = useParams()
+    // eslint-disable-next-line no-unused-vars
+    const [response, loading, hasError] = useFetch(`${BASE_URL}/user/${id}`)
+    console.log(response)
 
-    const [data2, setData2] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [hasError, setHasError] = useState(false)
 
-
-    useEffect(() => {
-        setLoading(true)
-        fetch(`${BASE_URL}/user/${id}`)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
+    function useFetch(url, opts) {
+        const [response, setResponse] = useState(null)
+        const [loading, setLoading] = useState(false)
+        const [hasError, setHasError] = useState(false)
+        useEffect(() => {
+            setLoading(true)
+            fetch(url, opts)
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                })
+                .then((res) => {
+                    setResponse(res)
+                    console.log(res)
+                    setLoading(false)
                 }
-            })
-            .then(
-                (res) => setData2(res)
-            )
-            .catch(err => {
-                setHasError(true)
-                setLoading(false)
-            });
+                )
+                .catch(err => {
+                    setHasError(true)
+                    setLoading(false)
+                });
 
-        setLoading(false)
-        console.log(data2)
+        }, [url])
 
-    }, [id])
+        return [response, loading, hasError]
+
+
+    }
 
     // useEffect(() => {
     //     // setLoading(true);
