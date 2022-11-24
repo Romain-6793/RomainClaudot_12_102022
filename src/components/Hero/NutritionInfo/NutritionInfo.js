@@ -6,7 +6,7 @@ import NutritionCard from './NutritionCard'
 
 function NutritionInfo(props) {
 
-    const keyData = props.keyData.current
+    const keyData = props.keyData
     const calorieCount = keyData.calorieCount
     const proteinCount = keyData.proteinCount
     const carbohydrateCount = keyData.carbohydrateCount

@@ -2,12 +2,10 @@
 import '../../styles/Hero/Banner.css'
 import { useState } from 'react'
 
-
-
 function Banner(props) {
 
 
-    const firstName = props.firstName.current
+    const firstName = props.firstName
 
     // eslint-disable-next-line no-unused-vars
     const [isAchieved, setIsAchieved] = useState(true)
