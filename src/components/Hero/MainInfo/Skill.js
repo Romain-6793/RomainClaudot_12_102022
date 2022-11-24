@@ -7,6 +7,8 @@ function Skill(props) {
 
 
     const skillKind = props.skillKind
+    console.log(skillKind)
+    console.log(props.kind)
     let value = useRef(skillKind[props.kind])
 
     useEffect(() => {

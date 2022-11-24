@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 
-function Hero(props) {
+function Hero() {
 
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
 

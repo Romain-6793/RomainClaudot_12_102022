@@ -5,12 +5,12 @@ import Aside from "./Aside"
 import Hero from "./Hero/Hero"
 
 
-function MainWrapper(props) {
+function MainWrapper() {
 
 
     return (
         <div className="main-wrapper">
-            <Aside /><Hero data={props.data} />
+            <Aside /><Hero />
         </div>
     )
 
