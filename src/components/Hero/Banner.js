@@ -13,9 +13,9 @@ function Banner(props) {
 
     return (
         <div className="banner">
-            <h2>Bonjour {firstName}</h2>
-            {isAchieved ? <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p> :
-                <p>Courage ! Vous pouvez atteindre vos objectifs 💪</p>}
+            <h2 className="hello">Bonjour <span className="firstname">{firstName}</span></h2>
+            {isAchieved ? <p className="daily-message">Félicitations ! Vous avez explosé vos objectifs hier 👏</p> :
+                <p p className="daily-message">Courage ! Vous pouvez atteindre vos objectifs 💪</p>}
         </div>
     )
 

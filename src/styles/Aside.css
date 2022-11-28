@@ -2,5 +2,46 @@
 .aside {
     width: 117px;
     height: 933px;
-    border: 1px solid green
+    background: black;
+    position: relative;
+}
+
+.aside-nav {
+    height: 316px;
+    width: 64px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    margin-top: 300px;
+    margin-left: 20px;
+
+}
+
+.aside-btn {
+    width: 64px;
+    height: 64px;
+    background: transparent;
+
+}
+
+.aside-image {
+    width: 64px;
+    height: 64px;
+}
+
+.copyrights-div {
+    width: 140px;
+    height: 24px;
+    transform: rotate(-90deg);
+    position: absolute;
+    bottom: 100px;
+    left: -15px;
+}
+
+.copyrights {
+    width: 100%;
+    font-weight: 500;
+    font-size: 12px;
+    color: #FFFFFF;
+    
 }

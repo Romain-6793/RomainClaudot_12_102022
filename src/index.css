@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  font-family: 'Roboto', 'Arial', 'sans-serif';
+}
+
 button {
   cursor: pointer;
 }

@@ -14,10 +14,10 @@ function Nav(props) {
     return isOpen ? (
         <>
             <nav className="nav">
-                <button>Accueil</button>
-                <button onClick={() => setIsOpen(false)}>Profil</button>
-                <button>Réglage</button>
-                <button>Communauté</button>
+                <button className="header-btn">Accueil</button>
+                <button className="header-btn" onClick={() => setIsOpen(false)}>Profil</button>
+                <button className="header-btn">Réglage</button>
+                <button className="header-btn">Communauté</button>
             </nav>
             <div className="profile-dropdown">
                 {userdata.map((index) => (
@@ -27,10 +27,10 @@ function Nav(props) {
         </>
     ) : (
         <nav className="nav">
-            <button>Accueil</button>
-            <button onClick={() => setIsOpen(true)}>Profil</button>
-            <button>Réglage</button>
-            <button>Communauté</button>
+            <button className="header-btn">Accueil</button>
+            <button className="header-btn" onClick={() => setIsOpen(true)}>Profil</button>
+            <button className="header-btn">Réglage</button>
+            <button className="header-btn">Communauté</button>
         </nav>
     )
 }

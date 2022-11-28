@@ -1,5 +1,15 @@
 .header {
     width: 100%;
     height: 91px;
-    border: 1px solid red
+    background: black;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sportsee-logo {
+    position: absolute;
+    top: 19px;
+    left: 29px;
+    z-index: 2;
 }
