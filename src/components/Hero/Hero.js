@@ -5,8 +5,7 @@ import Banner from './Banner'
 import MainInfo from './MainInfo/MainInfo'
 import NutritionInfo from './NutritionInfo/NutritionInfo'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-
+import React, { useState, useEffect } from 'react'
 
 function Hero() {
 
