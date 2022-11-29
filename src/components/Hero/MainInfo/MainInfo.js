@@ -10,19 +10,16 @@ import Score from './Score'
 
 function MainInfo(props) {
 
-    const activitySessions = props.activitySessions.current
-    const averageSessions = props.averageSessions.current
-    const skillData = props.skillData.current
-    const skillKind = props.skillKind.current
-    const score = props.score.current
+    const activitySessions = props.activitySessions
+    const averageSessions = props.averageSessions
+    const skillData = props.skillData
+    const score = props.score
 
     return (
         <div className="main-info">
             <Activity activitySessions={activitySessions} />
             <Duration averageSessions={averageSessions} />
-            <Skills
-                skillData={skillData}
-                skillKind={skillKind} />
+            <Skills skillData={skillData} />
             <Score score={score} />
         </div>
     )

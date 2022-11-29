@@ -5,107 +5,122 @@ import Banner from './Banner'
 import MainInfo from './MainInfo/MainInfo'
 import NutritionInfo from './NutritionInfo/NutritionInfo'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
-
-function Hero(props) {
+function Hero() {
 
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
 
-    const data = props.data
+    const { id = 12 } = useParams()
 
-    const BASE_URL = `http://localhost:3000`
-
-    const [loading, setLoading] = useState(false)
-
-    const [basicUser, setUser] = useState(data.USER_MAIN_DATA[0])
-    // Ou bien mettre un objet vide dans le useState ou data.USER_MAIN_DATA[0]. Tout dépend du choix.
-    // Il faudra peut-être supprimer le DD.
-    let firstName = useRef(data.USER_MAIN_DATA[0].userInfos.firstName)
-    let keyData = useRef(data.USER_MAIN_DATA[0].keyData)
-    let score = useRef(data.USER_MAIN_DATA[0].todayScore)
-    // || useRef(data.USER_MAIN_DATA[0].score)
+    const BASE_URL = `http://localhost:3000/user/${id}`
+    const URLS = [
+        BASE_URL,
+        `${BASE_URL}/activity`,
+        `${BASE_URL}/average-sessions`,
+        `${BASE_URL}/performance`
+    ]
     // eslint-disable-next-line no-unused-vars
-    const [basicActivity, setActivity] = useState(data.USER_ACTIVITY[0])
-    let activitySessions = useRef(data.USER_ACTIVITY[0].sessions)
-    // eslint-disable-next-line no-unused-vars
-    const [basicSessions, setSessions] = useState(data.USER_AVERAGE_SESSIONS[0])
-    let averageSessions = useRef(data.USER_AVERAGE_SESSIONS[0].sessions)
-    // eslint-disable-next-line no-unused-vars
-    const [basicSkills, setSkills] = useState(data.USER_PERFORMANCE[0])
-    let skillData = useRef(data.USER_PERFORMANCE[0].data)
-    let skillKind = useRef(data.USER_PERFORMANCE[0].kind)
+    const [response, loading, hasError] = useFetch(BASE_URL, URLS)
+    const [user, setUser] = useState({
+        firstName: "Karl",
+        metadatas: {
+            keyData: { calorieCount: 1930, proteinCount: 155, carbohydrateCount: 290, lipidCount: 50 },
+            todayScore: 0.12,
+            sessions: {
+                activitySessions: [
+                    { day: '2020-07-01', kilogram: 80, calories: 240 },
+                    { day: '2020-07-02', kilogram: 80, calories: 220 },
+                    { day: '2020-07-03', kilogram: 81, calories: 280 },
+                    { day: '2020-07-04', kilogram: 81, calories: 290 },
+                    { day: '2020-07-05', kilogram: 80, calories: 160 },
+                    { day: '2020-07-06', kilogram: 78, calories: 162 },
+                    { day: '2020-07-07', kilogram: 76, calories: 390 }],
+                averageSessions:
+                    [{ day: 1, sessionLength: 30 },
+                    { day: 2, sessionLength: 23 },
+                    { day: 3, sessionLength: 45 },
+                    { day: 4, sessionLength: 50 },
+                    { day: 5, sessionLength: 0 },
+                    { day: 6, sessionLength: 0 },
+                    { day: 7, sessionLength: 60 },
+                    ]
+            },
+            skillData: [
+                { value: 80, kind: 1 },
+                { value: 120, kind: 2 },
+                { value: 140, kind: 3 },
+                { value: 50, kind: 4 },
+                { value: 200, kind: 5 },
+                { value: 90, kind: 6 },
+            ],
+        },
 
+    }
+    )
 
-    const { id } = useParams()
-
-    // const getUser = async () => {
-    //     const user = await getUser(`${BASE_URL}/user/${id}`);
-    //     if (user) setUser(user)
-    //      setLaoding(false)
-    // }
-
-    useEffect(() => {
-        // setLoading(true);
-        if (id) {
-            // const user = data.USER_MAIN_DATA.filter(item => item.id === Number(id));
-
-            const activity = data.USER_ACTIVITY.filter(item => item.userId === Number(id))
-            const avSessions = data.USER_AVERAGE_SESSIONS.filter(item => item.userId === Number(id))
-            const skills = data.USER_PERFORMANCE.filter(item => item.userId === Number(id))
-
-            const getUser = async () => {
-                const user = await fetch(`${BASE_URL}/user/18`).then(
-                    res => setUser(res.user)
-                );
-                if (user) {
-                    setUser(user)
-                    console.log(user)
+    function useFetch(url, urls) {
+        const [response, setResponse] = useState(null)
+        const [loading, setLoading] = useState(false)
+        const [hasError, setHasError] = useState(false)
+        useEffect(() => {
+            setLoading(true)
+            Promise.all(urls.map(url =>
+                fetch(url)
+                    .then(res => res.json())
+            ))
+                .then((data) => {
+                    setResponse(data)
+                    setHasError(false)
                     setLoading(false)
-                }
-            }
+                    setUser(prev => {
+                        return {
+                            // La ligne suivante avec le spread permet de reprendre prev et de l'écraser.
+                            ...prev,
+                            firstName: data[0].data.userInfos.firstName,
+                            metadatas: {
+                                sessions: {
+                                    activitySessions: data[1].data.sessions,
+                                    averageSessions: data[2].data.sessions
+                                },
+                                skillData: data[3].data.data,
+                                todayScore: data[0].data.todayScore || data[0].data.score,
+                                keyData: data[0].data.keyData
+                            },
+                        }
+                    })
 
-            getUser()
+                })
+                .catch(err => {
+                    setHasError(true)
+                    setLoading(false)
+                })
 
-            // if (user) {
-            //     setUser(user);
-            //     // setActivity(activity);
-            //     // setSessions(avSessions);
-            //     // setSkills(skills);
-            //     firstName.current = user[0].userInfos.firstName
-            //     activitySessions.current = activity[0].sessions
-            //     averageSessions.current = avSessions[0].sessions
-            //     skillData.current = skills[0].data
-            //     skillKind.current = skills[0].kind
-            //     score.current = user[0].todayScore || user[0].score
-            //     keyData.current = user[0].keyData
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [url])
 
-            // }
-            // setLoading(false);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id])
+        return [response, loading, hasError]
 
 
-    if (!basicUser) {
-        return <div>No user to display</div>
     }
 
+    if (hasError) {
+        return <div>No user to display</div>
+    }
     if (loading) {
         return <div>Loading...</div>
     }
-
     return (
         <div className="hero">
-            <Banner firstName={firstName} />
+            <Banner firstName={user.firstName} />
             <MainInfo
-                activitySessions={activitySessions}
-                averageSessions={averageSessions}
-                skillData={skillData}
-                skillKind={skillKind}
-                score={score}
+                activitySessions={user.metadatas.sessions.activitySessions}
+                averageSessions={user.metadatas.sessions.averageSessions}
+                skillData={user.metadatas.skillData}
+                skillKind={user.metadatas.skillKind}
+                score={user.metadatas.todayScore}
             />
-            <NutritionInfo keyData={keyData} />
+            <NutritionInfo keyData={user.metadatas.keyData} />
         </div>
     )
 }

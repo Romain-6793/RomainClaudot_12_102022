@@ -3,10 +3,15 @@ import '../../../styles/Hero/NutritionInfo/NutritionInfo.css'
 
 import NutritionCard from './NutritionCard'
 
+import caloriesIcon from '../../../assets/calories-icon.svg'
+import proteinIcon from '../../../assets/protein-icon.svg'
+import carbsIcon from '../../../assets/carbs-icon.svg'
+import fatIcon from '../../../assets/fat-icon.svg'
+
 
 function NutritionInfo(props) {
 
-    const keyData = props.keyData.current
+    const keyData = props.keyData
     const calorieCount = keyData.calorieCount
     const proteinCount = keyData.proteinCount
     const carbohydrateCount = keyData.carbohydrateCount
@@ -16,10 +21,10 @@ function NutritionInfo(props) {
 
     return (
         <div className="nutrition-info">
-            <NutritionCard name="Calories" count={`${calorieCount}kCal`} />
-            <NutritionCard name="Proteines" count={`${proteinCount}g`} />
-            <NutritionCard name="Glucides" count={`${carbohydrateCount}g`} />
-            <NutritionCard name="Lipides" count={`${lipidCount}g`} />
+            <NutritionCard name="Calories" count={`${calorieCount}kCal`} img={caloriesIcon} />
+            <NutritionCard name="Proteines" count={`${proteinCount}g`} img={proteinIcon} />
+            <NutritionCard name="Glucides" count={`${carbohydrateCount}g`} img={carbsIcon} />
+            <NutritionCard name="Lipides" count={`${lipidCount}g`} img={fatIcon} />
         </div>
     )
 }

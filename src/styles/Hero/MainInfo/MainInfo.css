@@ -2,9 +2,15 @@
 .main-info {
     width: 840px;
     height: 620px;
-    border: 1px solid purple;
     margin-left: 107px;
     margin-right: 31px;
     display: flex;
     flex-flow: row wrap;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .main-info {
+        margin-left: 50px;
+        width: 65%;
+    }
 }

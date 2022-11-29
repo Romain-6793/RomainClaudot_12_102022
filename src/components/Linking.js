@@ -1,4 +1,6 @@
 
+import '../styles/Linking.css'
+
 import { Link } from "react-router-dom"
 
 function Linking(props) {
@@ -7,7 +9,7 @@ function Linking(props) {
     const id = props.id
 
     return (
-        <Link to={`/main/${id}`}>{firstName}</Link>
+        <Link className="user-link" to={`/user/${id}`} onClick={props.closeDropdown}>{firstName}</Link>
     )
 }
 

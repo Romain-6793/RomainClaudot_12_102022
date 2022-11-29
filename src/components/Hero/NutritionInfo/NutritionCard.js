@@ -4,8 +4,10 @@ import '../../../styles/Hero/NutritionInfo/NutritionCard.css'
 function NutritionCard(props) {
     return (
         <div className="nutrition-card">
-            <span>{props.name}</span>
-            <span>{props.count}</span>
+            <img src={props.img} alt="icone des éléments nutritifs" className="nutrition-icon"></img>
+            <div className="nutrition-display">
+                <p className="nutrition-text"><span className="nutrition-count">{props.count}</span><br />{props.name}</p>
+            </div>
         </div>
     )
 

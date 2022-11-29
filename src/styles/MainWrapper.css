@@ -1,7 +1,6 @@
 .main-wrapper {
     height: 933px;
     width: 100%;
-    border: 1px solid orange;
     display: flex;
     flex-flow: row wrap;
 }

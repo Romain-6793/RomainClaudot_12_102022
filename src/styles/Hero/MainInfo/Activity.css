@@ -3,8 +3,77 @@
     width: 100%;
     height: 320px;
     margin-bottom: 32px;
-    border: 1px solid red;
+    background: #FBFBFB;
+    border-radius: 5px;
+    
+}
+
+.activity-banner {
+    width: 100%;
+    height: 30px;
+    padding-top: 10px;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
+    
+}
 
+.activity-title {
+    margin-left: 30px;
+    font-weight: 600;
+
+}
+
+.activity-legend {
+    width: 335px;
+    height: 30px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.black-circle, .red-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.black-circle {
+    background: #020203;
+}
+
+.red-circle {
+    background: #E60000;
+}
+
+.kilograms-text, .calories-text {
+    color: #74798C;
+    font-weight: 500;
+}
+
+.kilograms-text {
+    width: 120px;
+}
+
+.calories-text {
+    width: 180px;
+    
+}
+
+.custom-tooltip {
+    width: 39px;
+    height: 63px;
+    background: #E60000;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: space-around;
+    justify-content: center;
+}
+
+.tooltip-label {
+    width: 30px;
+    color: #FFFFFF;
+    font-size: 7px;
+    text-align: center;
 }

@@ -3,16 +3,12 @@ import Header from "../components/Header";
 import MainWrapper from "../components/MainWrapper";
 
 
-
-
-
-
-const Layout = (props) => {
+const User = (props) => {
   return (
     <>
-      <Header data={props.data} /><MainWrapper data={props.data} />
+      <Header data={props.data} /><MainWrapper />
     </>
   );
 };
 
-export default Layout;
+export default User;

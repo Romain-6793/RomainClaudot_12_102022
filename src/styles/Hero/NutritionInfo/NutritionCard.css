@@ -2,6 +2,48 @@
 .nutrition-card {
     width: 258px;
     height: 124px;
-    border: 1px solid blue;
+    background: #FBFBFB;
     margin-bottom: 39px;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.nutrition-icon {
+    margin-left: 32px;
+    margin-right: 24px;
+}
+
+.nutrition-display {
+    width: 65px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.nutrition-text {
+    color: #74798C;
+    font-weight: 525;
+}
+
+.nutrition-count {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .nutrition-card {
+        width: 100%;
+        
+    }
+
+    .nutrition-count {
+        font-size: 18px;
+    }
+
+    .nutrition-text {
+        font-size: 11px;
+    }
+
 }
