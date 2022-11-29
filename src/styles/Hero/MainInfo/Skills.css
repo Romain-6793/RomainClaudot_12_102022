@@ -3,7 +3,14 @@
     width: 258px;
     height: 263px;
     margin-right: 30px;
-    border: 1px solid green;
+    background: #282D30;
     display: flex;
     flex-flow: row wrap;
+    border-radius: 5px;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .skills {
+        width: 30%;
+    }
 }

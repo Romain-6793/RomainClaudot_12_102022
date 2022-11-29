@@ -2,7 +2,12 @@
 .nutrition-info {
     height: 620px;
     width: 260px;
-    border: 1px solid pink;
     flex-flow: column wrap;
     
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .nutrition-info {
+        width: 22%;
+    }
 }

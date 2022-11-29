@@ -32,3 +32,14 @@
     flex-flow: column wrap;
     justify-content: space-around;
 }
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .header-btn, .profile-dropdown {
+        font-size: 17px;
+        
+    }
+
+    .profile-dropdown {
+        left: 42%;
+    }
+}

@@ -4,8 +4,8 @@
     height: 320px;
     margin-bottom: 32px;
     background: #FBFBFB;
+    border-radius: 5px;
     
-
 }
 
 .activity-banner {
@@ -61,3 +61,19 @@
     
 }
 
+.custom-tooltip {
+    width: 39px;
+    height: 63px;
+    background: #E60000;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: space-around;
+    justify-content: center;
+}
+
+.tooltip-label {
+    width: 30px;
+    color: #FFFFFF;
+    font-size: 7px;
+    text-align: center;
+}

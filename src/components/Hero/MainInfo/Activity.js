@@ -1,7 +1,6 @@
 
 
 import '../../../styles/Hero/MainInfo/Activity.css'
-// import DayActivity from './DayActivity'
 // eslint-disable-next-line no-unused-vars
 import React, { PureComponent, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -11,22 +10,6 @@ function Activity(props) {
 
 
     const activitySessions = props.activitySessions
-
-    useEffect(() => {
-        let highestWeight = 0
-        let lowestWeight = 0
-        let middleWeight = 0
-        let weightArray = [activitySessions.map((index) => (index.kilogram))]
-
-
-        highestWeight = Math.max(...weightArray[0])
-        lowestWeight = Math.min(...weightArray[0])
-        // eslint-disable-next-line no-unused-vars
-        middleWeight = Math.floor(lowestWeight + ((highestWeight - lowestWeight) / 2))
-
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     const chartData = [
         {
@@ -66,6 +49,18 @@ function Activity(props) {
         },
     ];
 
+    const CustomTooltip = ({ active, payload }) => {
+        if (active) {
+            return (
+                <div className="custom-tooltip">
+                    <p className="tooltip-label">{`${payload[0].value}kg`}</p>
+                    <p className="tooltip-label">{`${payload[1].value}kCal`}</p>
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <div className="activity">
             <div className="activity-banner">
@@ -94,22 +89,32 @@ function Activity(props) {
                         vertical={false} />
                     <XAxis dataKey="name" />
                     <YAxis orientation="right" axisLine={false} />
-                    <Tooltip />
+                    <Tooltip content={<CustomTooltip />} />
                     <Bar dataKey="kilogram" fill="#282D30" barSize={8} radius={[3.5, 3.5, 0, 0]} />
                     <Bar dataKey="calories" fill="#E60000" barSize={8} radius={[3.5, 3.5, 0, 0]} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
-        // <div className="activity">{activitySessions.map((index) => (
-        //     <DayActivity
-        //         day={index.day}
-        //         kilogram={index.kilogram}
-        //         calories={index.calories}
-        //         key={`${index}-${index.day}`}
-        //     />
-        // ))}</div>
     )
 
 }
 
 export default Activity
+
+// RECYCLE BIN
+
+// useEffect(() => {
+    //     let highestWeight = 0
+    //     let lowestWeight = 0
+    //     let middleWeight = 0
+    //     let weightArray = [activitySessions.map((index) => (index.kilogram))]
+
+
+    //     highestWeight = Math.max(...weightArray[0])
+    //     lowestWeight = Math.min(...weightArray[0])
+    //     // eslint-disable-next-line no-unused-vars
+    //     middleWeight = Math.floor(lowestWeight + ((highestWeight - lowestWeight) / 2))
+
+
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])

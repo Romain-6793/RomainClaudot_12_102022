@@ -13,16 +13,13 @@ function MainInfo(props) {
     const activitySessions = props.activitySessions
     const averageSessions = props.averageSessions
     const skillData = props.skillData
-    const skillKind = props.skillKind
     const score = props.score
 
     return (
         <div className="main-info">
             <Activity activitySessions={activitySessions} />
             <Duration averageSessions={averageSessions} />
-            <Skills
-                skillData={skillData}
-                skillKind={skillKind} />
+            <Skills skillData={skillData} />
             <Score score={score} />
         </div>
     )

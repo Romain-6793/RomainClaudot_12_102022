@@ -3,7 +3,53 @@
     width: 258px;
     height: 263px;
     margin-right: 30px;
-    border: 1px solid orange;
     display: flex;
     flex-flow: row wrap;
+    background: #FF0000;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.duration-text {
+    position: absolute;
+    width: 148px;
+    left: 34px;
+    top: 10px;
+    font-size: 15px;
+    color: #FFFFFF;
+    opacity: 0.6;
+}
+
+.line-chart-container {
+    z-index: 3;
+}
+
+.custom-tooltip2 {
+    width: 39px;
+    height: 25px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tooltip-label2 {
+    font-size: 8px;
+}
+
+.duration-layer {
+    height: 100%;
+    width: 79px;
+    background: #000000;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    opacity: 0.1;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .duration {
+        width: 29.5%;
+    }
 }

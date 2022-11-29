@@ -1,7 +1,6 @@
 
 .aside {
     width: 117px;
-    height: 933px;
     background: #020203;
     position: relative;
 }
@@ -21,6 +20,7 @@
     width: 64px;
     height: 64px;
     background: transparent;
+    border: none;
 
 }
 
@@ -45,3 +45,4 @@
     color: #FFFFFF;
     
 }
+

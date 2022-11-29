@@ -21,7 +21,10 @@ function Nav(props) {
             </nav>
             <div className="profile-dropdown">
                 {userdata.map((index) => (
-                    <Linking data={data} firstName={index.userInfos.firstName} key={index.id} id={index.id} />
+                    <Linking data={data}
+                        firstName={index.userInfos.firstName}
+                        key={index.id} id={index.id}
+                        closeDropdown={() => setIsOpen(false)} />
                 ))}
             </div>
         </>

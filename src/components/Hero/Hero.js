@@ -54,14 +54,6 @@ function Hero() {
                 { value: 200, kind: 5 },
                 { value: 90, kind: 6 },
             ],
-            skillKind: {
-                1: 'cardio',
-                2: 'energy',
-                3: 'endurance',
-                4: 'strength',
-                5: 'speed',
-                6: 'intensity'
-            }
         },
 
     }
@@ -81,7 +73,6 @@ function Hero() {
                     setResponse(data)
                     setHasError(false)
                     setLoading(false)
-                    console.log(data[0])
                     setUser(prev => {
                         return {
                             // La ligne suivante avec le spread permet de reprendre prev et de l'écraser.
@@ -93,7 +84,6 @@ function Hero() {
                                     averageSessions: data[2].data.sessions
                                 },
                                 skillData: data[3].data.data,
-                                skillKind: data[3].data.kind,
                                 todayScore: data[0].data.todayScore || data[0].data.score,
                                 keyData: data[0].data.keyData
                             },

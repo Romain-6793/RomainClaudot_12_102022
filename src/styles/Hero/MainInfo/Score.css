@@ -2,5 +2,44 @@
 .score {
     width: 258px;
     height: 263px;
-    border: 1px solid cyan;
+    background: #FBFBFB;
+    border-radius: 5px;
+    position: relative;
+}
+
+.score-title {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    left: 30px;
+    top: 24px;
+}
+
+.score-display {
+    position: absolute;
+    width: 65px;
+    top: 82px;
+    left: 95px;
+    text-align: center;
+}
+
+.score-text {
+    color: #74798C;
+}
+
+.score-number {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .score {
+        width: 29.5%;
+    }
+
+    .score-display {
+        top: 35%;
+        left: 35%;
+    }
 }

@@ -4,7 +4,10 @@
     width: 91.78%;
     display: flex;
     flex-flow: row wrap;
-    /* padding-top: 67px;
-    padding-right: 90px;
-    padding-left: 109px; */
+}
+
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+    .hero {
+        width: 88%;
+    }
 }
