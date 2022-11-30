@@ -55,7 +55,7 @@ function Duration(props) {
         <div className="duration">
             <div className="duration-layer"></div>
             <p className="duration-text">Durée moyenne des sessions</p>
-            <ResponsiveContainer className="line-chart-container" width="100%" height="100%">
+            <ResponsiveContainer className="line-chart-container" width="100%" aspect={1}>
                 <LineChart
                     width={500}
                     height={300}

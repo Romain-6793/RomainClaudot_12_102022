@@ -4,7 +4,7 @@ import '../styles/Aside.css'
 import zenIcon from '../assets/icon-zen.svg'
 import swimIcon from '../assets/icon-swim.svg'
 import bikeIcon from '../assets/icon-bike.svg'
-import muscleIcon from '../assets/icon-bike.svg'
+import muscleIcon from '../assets/icon-muscle.svg'
 
 function Aside() {
     return (
