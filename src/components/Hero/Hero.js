@@ -117,7 +117,6 @@ function Hero() {
                 activitySessions={user.metadatas.sessions.activitySessions}
                 averageSessions={user.metadatas.sessions.averageSessions}
                 skillData={user.metadatas.skillData}
-                skillKind={user.metadatas.skillKind}
                 score={user.metadatas.todayScore}
             />
             <NutritionInfo keyData={user.metadatas.keyData} />
