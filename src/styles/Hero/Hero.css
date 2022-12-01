@@ -4,6 +4,13 @@
     width: 91.78%;
     display: flex;
     flex-flow: row wrap;
+    position: relative;
+}
+
+.info-div {
+    position: absolute;
+    top: 200px;
+    left: 40%;
 }
 
 @media all and (min-width: 1024px) and (max-width: 1439px) {

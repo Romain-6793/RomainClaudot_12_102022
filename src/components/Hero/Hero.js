@@ -5,13 +5,15 @@ import Banner from './Banner'
 import MainInfo from './MainInfo/MainInfo'
 import NutritionInfo from './NutritionInfo/NutritionInfo'
 import { useParams } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import useFetch from '../../useFetch'
 
 function Hero() {
 
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
 
     const { id = 12 } = useParams()
+    // const {response, loading, error} = useFetch("url")
 
     const BASE_URL = `http://localhost:3000/user/${id}`
     const URLS = [
@@ -21,7 +23,10 @@ function Hero() {
         `${BASE_URL}/performance`
     ]
     // eslint-disable-next-line no-unused-vars
-    const [response, loading, hasError] = useFetch(BASE_URL, URLS)
+    const { response, loading, hasError } = useFetch(BASE_URL, URLS)
+
+    console.log(useFetch(BASE_URL, URLS))
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useState({
         firstName: "Karl",
         metadatas: {
@@ -59,58 +64,69 @@ function Hero() {
     }
     )
 
-    function useFetch(url, urls) {
-        const [response, setResponse] = useState(null)
-        const [loading, setLoading] = useState(false)
-        const [hasError, setHasError] = useState(false)
-        useEffect(() => {
-            setLoading(true)
-            Promise.all(urls.map(url =>
-                fetch(url)
-                    .then(res => res.json())
-            ))
-                .then((data) => {
-                    setResponse(data)
-                    setHasError(false)
-                    setLoading(false)
-                    setUser(prev => {
-                        return {
-                            // La ligne suivante avec le spread permet de reprendre prev et de l'écraser.
-                            ...prev,
-                            firstName: data[0].data.userInfos.firstName,
-                            metadatas: {
-                                sessions: {
-                                    activitySessions: data[1].data.sessions,
-                                    averageSessions: data[2].data.sessions
-                                },
-                                skillData: data[3].data.data,
-                                todayScore: data[0].data.todayScore || data[0].data.score,
-                                keyData: data[0].data.keyData
-                            },
-                        }
-                    })
+    // function useFetch(url, urls) {
+    //     const [response, setResponse] = useState(null)
+    //     const [loading, setLoading] = useState(false)
+    //     const [hasError, setHasError] = useState(false)
+    //     useEffect(() => {
+    //         setLoading(true)
+    //         Promise.all(urls.map(url =>
+    //             fetch(url)
+    //                 .then(res => res.json())
+    //         ))
+    //             .then((data) => {
+    //                 setResponse(data)
+    //                 setHasError(false)
+    //                 setLoading(false)
+    //                 setUser(prev => {
+    //                     return {
+    //                         // La ligne suivante avec le spread permet de reprendre prev et de l'écraser.
+    //                         ...prev,
+    //                         firstName: data[0].data.userInfos.firstName,
+    //                         metadatas: {
+    //                             sessions: {
+    //                                 activitySessions: data[1].data.sessions,
+    //                                 averageSessions: data[2].data.sessions
+    //                             },
+    //                             skillData: data[3].data.data,
+    //                             todayScore: data[0].data.todayScore || data[0].data.score,
+    //                             keyData: data[0].data.keyData
+    //                         },
+    //                     }
+    //                 })
 
-                })
-                .catch(err => {
-                    setHasError(true)
-                    setLoading(false)
-                })
+    //             })
+    //             .catch(err => {
+    //                 setHasError(true)
+    //                 setLoading(false)
+    //             })
 
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [url])
+    //         // eslint-disable-next-line react-hooks/exhaustive-deps
+    //     }, [url])
 
-        return [response, loading, hasError]
+    //     return [response, loading, hasError]
 
 
-    }
+    // }
 
     if (hasError) {
-        return <div>No user to display</div>
+        return <div className="info-div">NO USER TO DISPLAY !</div>
     }
     if (loading) {
-        return <div>Loading...</div>
+        return <div className="info-div">LOADING...</div>
     }
-    return (
+    return response !== null ? (
+        <div className="hero">
+            <Banner firstName={response[0].data.userInfos.firstName} />
+            <MainInfo
+                activitySessions={response[1].data.sessions}
+                averageSessions={response[2].data.sessions}
+                skillData={response[3].data.data}
+                score={(response[0].data.score || response[0].data.todayScore)}
+            />
+            <NutritionInfo keyData={user.metadatas.keyData} />
+        </div>
+    ) : (
         <div className="hero">
             <Banner firstName={user.firstName} />
             <MainInfo
@@ -122,6 +138,7 @@ function Hero() {
             <NutritionInfo keyData={user.metadatas.keyData} />
         </div>
     )
+
 }
 
 export default Hero
