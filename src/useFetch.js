@@ -1,14 +1,16 @@
 
-import React, { useState, useEffect } from "react"
-import axios from "axios"
+import { useState, useEffect } from "react"
+
 
 function useFetch(url, urls) {
     const [response, setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
-    // const [hasError, setHasError] = useState(false)
-
     const [hasError, setHasError] = useState(null)
-    const [user, setUser] = useState({ firstName: null, metadatas: null, })
+    const [newUser, setNewUser] = useState({
+        firstName: null,
+        metadatas: null,
+    }
+    )
 
     useEffect(() => {
         setLoading(true)
@@ -20,17 +22,16 @@ function useFetch(url, urls) {
         )
             .then((data) => {
                 setResponse(data)
-                console.log(data)
                 setHasError(null)
-                setUser(prev => {
+                setNewUser(prev => {
                     return {
-                        // La ligne suivante avec le spread permet de reprendre prev et de l'écraser.
+                        // The following line with the spread allows to reccover prev and to overwrite it.
                         ...prev,
                         firstName: data[0].data.userInfos.firstName,
                         metadatas: {
                             sessions: {
                                 activitySessions: data[1].data.sessions,
-                                averageSessions: data[2].data.sessions
+                                averageSessions: data[2].data.sessions,
                             },
                             skillData: data[3].data.data,
                             todayScore: data[0].data.todayScore || data[0].data.score,
@@ -38,9 +39,6 @@ function useFetch(url, urls) {
                         },
                     }
                 })
-
-                console.log(user)
-
             })
             .catch(err => {
                 setHasError(err)
@@ -53,7 +51,7 @@ function useFetch(url, urls) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url])
 
-    return { response, loading, hasError }
+    return { response, newUser, loading, hasError }
 
 
 }
