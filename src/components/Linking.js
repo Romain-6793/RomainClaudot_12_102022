@@ -2,15 +2,21 @@
 import '../styles/Linking.css'
 
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
 
-function Linking(props) {
+function Linking({ firstName, id, closeDropdown }) {
 
-    const firstName = props.firstName
-    const id = props.id
 
     return (
-        <Link className="user-link" to={`/user/${id}`} onClick={props.closeDropdown}>{firstName}</Link>
+        <Link className="user-link" to={`/user/${id}`} onClick={closeDropdown}>{firstName}</Link>
     )
+}
+
+Linking.propTypes = {
+    firstName: PropTypes.string,
+    id: PropTypes.number,
+    closeDropdown: PropTypes.func,
+
 }
 
 export default Linking

@@ -1,12 +1,13 @@
 
 import '../../styles/Hero/Hero.css'
 
-import Banner from './Banner'
-import MainInfo from './MainInfo/MainInfo'
-import NutritionInfo from './NutritionInfo/NutritionInfo'
 import { useParams } from 'react-router-dom'
 import React, { useState } from 'react'
 import useFetch from '../../useFetch'
+import Banner from './Banner'
+import MainInfo from './MainInfo/MainInfo'
+import NutritionInfo from './NutritionInfo/NutritionInfo'
+import Model from '../../Model'
 
 function Hero() {
 
@@ -62,33 +63,36 @@ function Hero() {
     }
     )
 
+    const modelizedUser = new Model(user)
+    const modelizedNewUser = new Model(newUser)
+
     if (hasError) {
         return <div className="info-div">NO USER TO DISPLAY !</div>
     }
     if (loading) {
         return <div className="info-div">LOADING...</div>
     }
-    return response !== null ? (
+    return response === null ? (
         <div className="hero">
-            <Banner firstName={newUser.firstName} />
+            <Banner firstName={modelizedUser.firstName} />
             <MainInfo
-                activitySessions={newUser.metadatas.sessions.activitySessions}
-                averageSessions={newUser.metadatas.sessions.averageSessions}
-                skillData={newUser.metadatas.skillData}
-                score={newUser.metadatas.todayScore}
+                activitySessions={modelizedUser.metadatas.sessions.activitySessions}
+                averageSessions={modelizedUser.metadatas.sessions.averageSessions}
+                skillData={modelizedUser.metadatas.skillData}
+                score={modelizedUser.metadatas.todayScore}
             />
-            <NutritionInfo keyData={user.metadatas.keyData} />
+            <NutritionInfo keyData={modelizedUser.metadatas.keyData} />
         </div>
     ) : (
         <div className="hero">
-            <Banner firstName={user.firstName} />
+            <Banner firstName={modelizedNewUser.firstName} />
             <MainInfo
-                activitySessions={user.metadatas.sessions.activitySessions}
-                averageSessions={user.metadatas.sessions.averageSessions}
-                skillData={user.metadatas.skillData}
-                score={user.metadatas.todayScore}
+                activitySessions={modelizedNewUser.metadatas.sessions.activitySessions}
+                averageSessions={modelizedNewUser.metadatas.sessions.averageSessions}
+                skillData={modelizedNewUser.metadatas.skillData}
+                score={modelizedNewUser.metadatas.todayScore}
             />
-            <NutritionInfo keyData={user.metadatas.keyData} />
+            <NutritionInfo keyData={modelizedNewUser.metadatas.keyData} />
         </div>
     )
 

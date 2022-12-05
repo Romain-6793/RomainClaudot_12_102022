@@ -2,10 +2,11 @@
 import '../styles/Nav.css'
 import { useState } from 'react'
 import Linking from './Linking'
+import PropTypes from 'prop-types'
 
-function Nav(props) {
+function Nav({ data }) {
 
-    const data = props.data
+    // const data = props.data
     const userdata = data.USER_MAIN_DATA
 
     const [isOpen, setIsOpen] = useState(false)
@@ -36,6 +37,10 @@ function Nav(props) {
             <button className="header-btn">Communauté</button>
         </nav>
     )
+}
+
+Nav.propTypes = {
+    data: PropTypes.object,
 }
 
 export default Nav
