@@ -6,6 +6,12 @@ import Nav from './Nav'
 import PropTypes from 'prop-types'
 
 
+/**
+ * 
+ * @param {data} object in which we recover the users firstnames to create a dropdown (data.js)
+ * @returns a header including the nav, which includes itself a dropdown 
+ */
+
 function Header({ data }) {
     return (
         <header className="header"><Nav data={data} />

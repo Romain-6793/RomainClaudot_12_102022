@@ -7,6 +7,12 @@ import PropTypes from 'prop-types'
 import React, { PureComponent, useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
+/**
+ * 
+ * @param {skillData} array of skills related to performance data
+ * @returns the div "skills" with all the informations, including the responsive RadarChart
+ */
+
 function Skills({ skillData }) {
 
     const [isSmall, setIsSmall] = useState({ matches: window.matchMedia("(max-width: 1439px)").matches });

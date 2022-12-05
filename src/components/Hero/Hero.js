@@ -10,9 +10,12 @@ import NutritionInfo from './NutritionInfo/NutritionInfo'
 import Model from '../../Model'
 
 
-function Hero() {
+/**
+ * 
+ * @returns the whole organization of the page main content, depending on the response given by useFetch
+ */
 
-    //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
+function Hero() {
 
     const { id = 12 } = useParams()
 
@@ -26,6 +29,9 @@ function Hero() {
     ]
     // eslint-disable-next-line no-unused-vars
     const { response, newUser, loading, hasError } = useFetch(BASE_URL, URLS)
+
+
+    /** Here is our default data, to use if response is null */
 
     const [user] = useState({
         firstName: "Karl",
@@ -64,8 +70,17 @@ function Hero() {
     }
     )
 
+    /** Here are our model classes, used to format data the right way. Classes and new user are imported
+     * from different files.
+     */
+
     const modelizedUser = new Model(user)
     const modelizedNewUser = new Model(newUser)
+
+
+    /**
+     * Conditional render depending on response, loading and error
+     */
 
     if (hasError) {
         return <div className="info-div">NO USER TO DISPLAY !</div>

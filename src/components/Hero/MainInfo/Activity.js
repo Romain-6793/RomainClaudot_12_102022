@@ -6,6 +6,12 @@ import React, { PureComponent, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 
+/**
+ * 
+ * @param {activitySessions} array of data to exploit in the Barchart
+ * @returns the div with all the informations, responsive Barchart included
+ */
+
 
 function Activity({ activitySessions }) {
 
@@ -46,6 +52,13 @@ function Activity({ activitySessions }) {
             calories: activitySessions[6].calories,
         },
     ];
+
+    /**
+     * 
+     * @param {active} checks if cursor hovers the concerned bar 
+     * @param {payload} is the array of values to be rendered in the ToolTip
+     * @returns the Tooltip if active, else, returns null
+     */
 
     const CustomTooltip = ({ active, payload }) => {
         if (active) {

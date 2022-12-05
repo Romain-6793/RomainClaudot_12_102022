@@ -1,12 +1,27 @@
 
 import '../../../styles/Hero/MainInfo/Duration.css'
 // eslint-disable-next-line no-unused-vars
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 
+/**
+ * 
+ * @param {averageSessions} array of data to exploit in the LineChart
+ * @returns the div "duration" with all the infos, including the responsive LineChart, size of the chart
+ * depending on size of the screen.
+ */
 
 function Duration({ averageSessions }) {
+
+    const [isSmall, setIsSmall] = useState({ matches: window.matchMedia("(max-width: 1439px)").matches });
+
+    function screenListener() {
+        const handler = e => setIsSmall({ matches: e.matches });
+        window.matchMedia("(max-width: 1439px)").addEventListener('change', handler);
+    }
+
+    screenListener()
 
     const chartData = [
         {
@@ -39,6 +54,13 @@ function Duration({ averageSessions }) {
         },
     ];
 
+    /**
+     * 
+     * @param {active} checks if cursor hovers the concerned dash
+     * @param {payload} is the array of values to be rendered in the ToolTip
+     * @returns the Tooltip if active, else, returns null
+     */
+
     const CustomTooltip = ({ active, payload }) => {
         if (active) {
             return (
@@ -50,7 +72,40 @@ function Duration({ averageSessions }) {
         return null;
     };
 
-    return (
+    return isSmall.matches ? (
+        <div className="duration">
+            <div className="duration-layer"></div>
+            <p className="duration-text">Durée moyenne des sessions</p>
+            <ResponsiveContainer className="line-chart-container" width="100%" height="100%">
+                <LineChart
+                    width={500}
+                    height={300}
+                    data={chartData}
+                    margin={{
+                        top: 5,
+                        bottom: 5,
+                        left: -55.5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
+                    <XAxis dataKey="name" axisLine={false} stroke="#FFFFFF" />
+                    <YAxis
+                        axisLine={false}
+                        tick={false}
+                    />
+                    <Tooltip content={<CustomTooltip />} />
+                    <Line
+                        type="monotone"
+                        dataKey="duration"
+                        stroke="#D8D8D8"
+                        activeDot={{ r: 8 }}
+                        dot={false}
+                        strokeWidth={1.5}
+                    />
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
+    ) : (
         <div className="duration">
             <div className="duration-layer"></div>
             <p className="duration-text">Durée moyenne des sessions</p>
@@ -84,6 +139,7 @@ function Duration({ averageSessions }) {
             </ResponsiveContainer>
         </div>
     )
+
 
 }
 

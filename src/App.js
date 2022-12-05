@@ -8,6 +8,10 @@ import Layout from './pages/Layout';
 import User from './pages/User'
 
 
+/**
+ * 
+ * @returns the BrowserRouter allowing navigation between endpoints and useParams
+ */
 
 function App() {
 

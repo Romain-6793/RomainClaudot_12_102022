@@ -2,6 +2,14 @@
 import { useState, useEffect } from "react"
 
 
+/**
+ * Our hook created to fetch data, imported in Hero.js
+ * 
+ * @param {url} the url seized in the navigator search-bar
+ * @param {urls} the API urls where we fetch the data
+ * @returns the reponse, the loading, the error boolean and the result of our fetch, the newUser object 
+ */
+
 function useFetch(url, urls) {
     const [response, setResponse] = useState(null)
     const [loading, setLoading] = useState(false)

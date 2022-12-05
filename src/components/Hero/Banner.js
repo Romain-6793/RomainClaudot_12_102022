@@ -3,6 +3,12 @@ import '../../styles/Hero/Banner.css'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * 
+ * @param {firstName} string containing the wanted firstName (matching with id params)
+ * @returns the div "banner" containing the firstname and the daily message
+ */
+
 function Banner({ firstName }) {
 
     // eslint-disable-next-line no-unused-vars

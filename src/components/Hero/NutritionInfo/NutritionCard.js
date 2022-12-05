@@ -2,6 +2,14 @@
 import '../../../styles/Hero/NutritionInfo/NutritionCard.css'
 import PropTypes from 'prop-types'
 
+/**
+ * 
+ * @param {img} string containing the right img url to display
+ * @param {count} string containing the right count to display
+ * @param {name} string containing the right name to display
+ * @returns the div "nutrition-card" with all the wanted infos
+ */
+
 function NutritionCard({ img, count, name }) {
     return (
         <div className="nutrition-card">

@@ -6,6 +6,11 @@ import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from '
 import PropTypes from 'prop-types'
 
 
+/**
+ * 
+ * @param {score} number between 0 and 1 to be comverted in percents
+ * @returns the div "score" with all the informations, including the responsive RadialBarChart 
+ */
 
 
 function Score({ score }) {

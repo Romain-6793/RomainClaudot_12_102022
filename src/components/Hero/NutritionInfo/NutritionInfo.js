@@ -10,6 +10,13 @@ import fatIcon from '../../../assets/fat-icon.svg'
 
 import PropTypes from 'prop-types'
 
+/**
+ * 
+ * @param {keyData} object containing all the values "counts" of each nutrition category 
+ * @returns the div "nutrition-info" with all the informations : count, name and icon matching to
+ * each NutritionCard category
+ */
+
 function NutritionInfo({ keyData }) {
 
     const calorieCount = keyData.calorieCount
