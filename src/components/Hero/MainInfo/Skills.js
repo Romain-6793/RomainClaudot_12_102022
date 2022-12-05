@@ -1,14 +1,13 @@
 
 
 import '../../../styles/Hero/MainInfo/Skills.css'
+import PropTypes from 'prop-types'
 
 // eslint-disable-next-line no-unused-vars
 import React, { PureComponent, useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
-function Skills(props) {
-
-    const skillData = props.skillData
+function Skills({ skillData }) {
 
     const [isSmall, setIsSmall] = useState({ matches: window.matchMedia("(max-width: 1439px)").matches });
 
@@ -58,6 +57,10 @@ function Skills(props) {
         </div>
     )
 
+}
+
+Skills.propTypes = {
+    skillData: PropTypes.array,
 }
 
 export default Skills

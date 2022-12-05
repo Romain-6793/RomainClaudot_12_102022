@@ -6,14 +6,10 @@ import Activity from './Activity'
 import Duration from './Duration'
 import Skills from './Skills'
 import Score from './Score'
+import PropTypes from 'prop-types'
 
 
-function MainInfo(props) {
-
-    const activitySessions = props.activitySessions
-    const averageSessions = props.averageSessions
-    const skillData = props.skillData
-    const score = props.score
+function MainInfo({ activitySessions, averageSessions, skillData, score }) {
 
     return (
         <div className="main-info">
@@ -23,6 +19,13 @@ function MainInfo(props) {
             <Score score={score} />
         </div>
     )
+}
+
+MainInfo.propTypes = {
+    activitySessions: PropTypes.array,
+    averageSessions: PropTypes.array,
+    skillData: PropTypes.array,
+    score: PropTypes.number,
 }
 
 export default MainInfo

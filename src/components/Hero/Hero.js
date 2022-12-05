@@ -9,6 +9,7 @@ import MainInfo from './MainInfo/MainInfo'
 import NutritionInfo from './NutritionInfo/NutritionInfo'
 import Model from '../../Model'
 
+
 function Hero() {
 
     //Ici on va gérer l'affichage conditionnel des données que l'on va faire remonter en props.
@@ -21,7 +22,7 @@ function Hero() {
         BASE_URL,
         `${BASE_URL}/activity`,
         `${BASE_URL}/average-sessions`,
-        `${BASE_URL}/performance`
+        `${BASE_URL}/performance`,
     ]
     // eslint-disable-next-line no-unused-vars
     const { response, newUser, loading, hasError } = useFetch(BASE_URL, URLS)

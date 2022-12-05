@@ -3,11 +3,10 @@ import '../../../styles/Hero/MainInfo/Duration.css'
 // eslint-disable-next-line no-unused-vars
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
 
 
-function Duration(props) {
-
-    const averageSessions = props.averageSessions
+function Duration({ averageSessions }) {
 
     const chartData = [
         {
@@ -86,6 +85,10 @@ function Duration(props) {
         </div>
     )
 
+}
+
+Duration.propTypes = {
+    averageSessions: PropTypes.array,
 }
 
 export default Duration

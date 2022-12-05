@@ -4,12 +4,10 @@ import '../../../styles/Hero/MainInfo/Activity.css'
 // eslint-disable-next-line no-unused-vars
 import React, { PureComponent, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
 
 
-function Activity(props) {
-
-
-    const activitySessions = props.activitySessions
+function Activity({ activitySessions }) {
 
     const chartData = [
         {
@@ -97,6 +95,10 @@ function Activity(props) {
         </div>
     )
 
+}
+
+Activity.propTypes = {
+    activitySessions: PropTypes.array,
 }
 
 export default Activity

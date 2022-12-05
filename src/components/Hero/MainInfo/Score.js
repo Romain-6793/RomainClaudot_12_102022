@@ -3,15 +3,12 @@ import '../../../styles/Hero/MainInfo/Score.css'
 // eslint-disable-next-line no-unused-vars
 import React, { PureComponent } from 'react';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types'
 
 
 
 
-function Score(props) {
-
-
-    const score = props.score
-
+function Score({ score }) {
 
     const chartData = [
         {
@@ -52,6 +49,10 @@ function Score(props) {
         </div>
     )
 
+}
+
+Score.propTypes = {
+    score: PropTypes.number,
 }
 
 export default Score

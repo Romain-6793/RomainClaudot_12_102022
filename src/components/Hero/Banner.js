@@ -1,11 +1,9 @@
 
 import '../../styles/Hero/Banner.css'
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-function Banner(props) {
-
-
-    const firstName = props.firstName
+function Banner({ firstName }) {
 
     // eslint-disable-next-line no-unused-vars
     const [isAchieved, setIsAchieved] = useState(true)
@@ -20,5 +18,10 @@ function Banner(props) {
     )
 
 }
+
+Banner.propTypes = {
+    firstName: PropTypes.string,
+}
+
 
 export default Banner

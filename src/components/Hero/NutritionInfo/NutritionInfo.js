@@ -8,10 +8,10 @@ import proteinIcon from '../../../assets/protein-icon.svg'
 import carbsIcon from '../../../assets/carbs-icon.svg'
 import fatIcon from '../../../assets/fat-icon.svg'
 
+import PropTypes from 'prop-types'
 
-function NutritionInfo(props) {
+function NutritionInfo({ keyData }) {
 
-    const keyData = props.keyData
     const calorieCount = keyData.calorieCount
     const proteinCount = keyData.proteinCount
     const carbohydrateCount = keyData.carbohydrateCount
@@ -27,6 +27,10 @@ function NutritionInfo(props) {
             <NutritionCard name="Lipides" count={`${lipidCount}g`} img={fatIcon} />
         </div>
     )
+}
+
+NutritionInfo.propTypes = {
+    keyData: PropTypes.object
 }
 
 export default NutritionInfo

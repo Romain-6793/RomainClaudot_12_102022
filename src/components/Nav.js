@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 
 function Nav({ data }) {
 
-    // const data = props.data
     const userdata = data.USER_MAIN_DATA
 
     const [isOpen, setIsOpen] = useState(false)
