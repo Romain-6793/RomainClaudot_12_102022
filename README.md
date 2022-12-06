@@ -4,7 +4,7 @@ This repo contains all the source code to run the sports analytics dashboard Spo
 
 ## 1. General information
 
-To start this project, you will have first to launch the P12-front-end-dashboard API (follow README.md on repo https://github.com/Romain-6793/P12-front-end-dashboard)
+To start this project, you will have first to launch the P12-front-end-dashboard API (follow README.md on repo https://github.com/Romain-6793/sportsee-api)
 and use the available url, for example http://localhost:3000/
 
 ## 2. Project
@@ -15,11 +15,11 @@ and use the available url, for example http://localhost:3000/
 Before starting the project, first be assured of the API running.
 Second, on your terminal, go to the file where your app is supposed to run by typing the following commands :
 
-"cd sportsee"
+`cd sportsee`
 
 then type
 
-"yarn start"
+`yarn start`
 
 if your default port is localhost:3000, the terminal will ask you if it could run on another port (in which your API isn't running), accept.
 
@@ -33,7 +33,7 @@ if your default port is localhost:3000, the terminal will ask you if it could ru
 
 This project includes one endpoint that you will be able to use:
 
-- `http://localhost:3000/user/${userId}` - displays information from a user. This first endpoint includes the user id, user information (first name, last name and age), the current day's score (todayScore) and key data (calorie, macronutrient, etc.).
+- `http://localhost:3000/user/${userId}` - displays information from a user. This endpoint includes every information of the user that will be displayed on the main page.
 
 **Warning, currently only two users have been mocked. They have userId 12 and 18 respectively.**
 

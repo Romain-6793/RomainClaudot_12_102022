@@ -17,29 +17,11 @@
     
 }
 
-.profile-dropdown {
-    height: 90px;
-    width: 150px;
-    background: black;
-    font-weight: 500;
-    font-size: 24px;
-    text-align: center;
-    border-radius: 0 0 5px 5px;
-    color: #FFFFFF;
-    position: absolute;
-    left: 43%;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-}
 
 @media all and (min-width: 1024px) and (max-width: 1439px) {
-    .header-btn, .profile-dropdown {
+    .header-btn {
         font-size: 17px;
         
     }
 
-    .profile-dropdown {
-        left: 42%;
-    }
 }

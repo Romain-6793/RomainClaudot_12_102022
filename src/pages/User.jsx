@@ -1,26 +1,22 @@
 import React from "react";
 import Header from "../components/Header";
 import MainWrapper from "../components/MainWrapper";
-import PropTypes from 'prop-types'
+
 
 
 /**
  * Only page of the app for the moment
  * 
- * @param {data} object in which we recover the users firstnames to create a dropdown (data.js)
- * @returns 
+ *
+ * @returns the header and the mainwrapper (rest of the page)
  */
 
-const User = ({data}) => {
+const User = () => {
   return (
     <>
-      <Header data={data} /><MainWrapper />
+      <Header /><MainWrapper />
     </>
   );
 };
-
-User.propTypes = {
-  data: PropTypes.object
-}
 
 export default User;
