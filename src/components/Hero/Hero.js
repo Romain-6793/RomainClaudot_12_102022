@@ -2,8 +2,8 @@
 import '../../styles/Hero/Hero.css'
 
 import { useParams } from 'react-router-dom'
-import React, { useState } from 'react'
-import useFetch from '../../useFetch'
+// import React, { useState } from 'react'
+import useFetchMultiple from '../../useFetchMultiple'
 import Banner from './Banner'
 import MainInfo from './MainInfo/MainInfo'
 import NutritionInfo from './NutritionInfo/NutritionInfo'
@@ -28,54 +28,41 @@ function Hero() {
         `${BASE_URL}/performance`,
     ]
     // eslint-disable-next-line no-unused-vars
-    const { response, newUser, loading, hasError } = useFetch(BASE_URL, URLS)
+    const { response, newUser, loading, hasError } = useFetchMultiple(BASE_URL, URLS)
 
 
     /** Here is our default data, to use if response is null */
 
-    const [user] = useState({
-        firstName: "Karl",
-        metadatas: {
-            keyData: { calorieCount: 1930, proteinCount: 155, carbohydrateCount: 290, lipidCount: 50 },
-            todayScore: 0.12,
-            sessions: {
-                activitySessions: [
-                    { day: '2020-07-01', kilogram: 80, calories: 240 },
-                    { day: '2020-07-02', kilogram: 80, calories: 220 },
-                    { day: '2020-07-03', kilogram: 81, calories: 280 },
-                    { day: '2020-07-04', kilogram: 81, calories: 290 },
-                    { day: '2020-07-05', kilogram: 80, calories: 160 },
-                    { day: '2020-07-06', kilogram: 78, calories: 162 },
-                    { day: '2020-07-07', kilogram: 76, calories: 390 }],
-                averageSessions:
-                    [{ day: 1, sessionLength: 30 },
-                    { day: 2, sessionLength: 23 },
-                    { day: 3, sessionLength: 45 },
-                    { day: 4, sessionLength: 50 },
-                    { day: 5, sessionLength: 0 },
-                    { day: 6, sessionLength: 0 },
-                    { day: 7, sessionLength: 60 },
-                    ]
-            },
-            skillData: [
-                { value: 80, kind: 1 },
-                { value: 120, kind: 2 },
-                { value: 140, kind: 3 },
-                { value: 50, kind: 4 },
-                { value: 200, kind: 5 },
-                { value: 90, kind: 6 },
-            ],
-        },
-
-    }
-    )
 
     /** Here are our model classes, used to format data the right way. Classes and new user are imported
      * from different files.
      */
 
-    const modelizedUser = new Model(user)
-    const modelizedNewUser = new Model(newUser)
+    // const modelizedUser = new Model(user);
+    const modelizedNewUser = new Model(newUser.user)
+    // const modelizedNewUser = new Model(newUser)
+    console.log(modelizedNewUser)
+    // modelizedUser.firstname = 'lulu'
+
+    // modelizedNewUser.firstName = newUser.user.firstName
+    // console.log(modelizedNewUser.firstName)
+    // modelizedNewUser.sessions = newUser.user.sessions
+    // console.log(modelizedNewUser.sessions)
+    // modelizedNewUser.activitySessions = newUser.user.sessions.activitySessions
+    // modelizedNewUser.averageSessions = newUser.user.sessions.averageSessions
+    // modelizedNewUser.skillData = newUser.user.skillData
+    // modelizedNewUser.todayScore = newUser.user.todayScore
+    // modelizedNewUser.keyData = newUser.user.keyData
+
+    modelizedNewUser.firstName = newUser.firstName
+    console.log(modelizedNewUser.firstName)
+    modelizedNewUser.sessions = newUser.metadatas.sessions
+    console.log(modelizedNewUser.sessions)
+    modelizedNewUser.activitySessions = newUser.metadatas.sessions.activitySessions
+    modelizedNewUser.averageSessions = newUser.metadatas.sessions.averageSessions
+    modelizedNewUser.skillData = newUser.metadatas.skillData
+    modelizedNewUser.todayScore = newUser.metadatas.todayScore
+    modelizedNewUser.keyData = newUser.metadatas.keyData
 
 
     /**
@@ -88,29 +75,41 @@ function Hero() {
     if (loading) {
         return <div className="info-div">LOADING...</div>
     }
-    return response === null ? (
-        <div className="hero">
-            <Banner firstName={modelizedUser.firstName} />
-            <MainInfo
-                activitySessions={modelizedUser.metadatas.sessions.activitySessions}
-                averageSessions={modelizedUser.metadatas.sessions.averageSessions}
-                skillData={modelizedUser.metadatas.skillData}
-                score={modelizedUser.metadatas.todayScore}
-            />
-            <NutritionInfo keyData={modelizedUser.metadatas.keyData} />
-        </div>
-    ) : (
+    return (
         <div className="hero">
             <Banner firstName={modelizedNewUser.firstName} />
             <MainInfo
-                activitySessions={modelizedNewUser.metadatas.sessions.activitySessions}
-                averageSessions={modelizedNewUser.metadatas.sessions.averageSessions}
-                skillData={modelizedNewUser.metadatas.skillData}
-                score={modelizedNewUser.metadatas.todayScore}
+                activitySessions={modelizedNewUser.sessions.activitySessions}
+                averageSessions={modelizedNewUser.sessions.averageSessions}
+                skillData={modelizedNewUser.skillData}
+                score={modelizedNewUser.todayScore}
             />
-            <NutritionInfo keyData={modelizedNewUser.metadatas.keyData} />
+            <NutritionInfo keyData={modelizedNewUser.keyData} />
         </div>
     )
+    // return response === null ? (
+    //     <div className="hero">
+    //         <Banner firstName={modelizedUser.firstName} />
+    //         <MainInfo
+    //             activitySessions={modelizedUser.metadatas.sessions.activitySessions}
+    //             averageSessions={modelizedUser.metadatas.sessions.averageSessions}
+    //             skillData={modelizedUser.metadatas.skillData}
+    //             score={modelizedUser.metadatas.todayScore}
+    //         />
+    //         <NutritionInfo keyData={modelizedUser.metadatas.keyData} />
+    //     </div>
+    // ) : (
+    //     <div className="hero">
+    //         <Banner firstName={modelizedNewUser.firstName} />
+    //         <MainInfo
+    //             activitySessions={modelizedNewUser.metadatas.sessions.activitySessions}
+    //             averageSessions={modelizedNewUser.metadatas.sessions.averageSessions}
+    //             skillData={modelizedNewUser.metadatas.skillData}
+    //             score={modelizedNewUser.metadatas.todayScore}
+    //         />
+    //         <NutritionInfo keyData={modelizedNewUser.metadatas.keyData} />
+    //     </div>
+    // )
 
 }
 

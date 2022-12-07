@@ -1,8 +1,8 @@
 
 
 import '../../../styles/Hero/MainInfo/Activity.css'
-// eslint-disable-next-line no-unused-vars
-import React, { PureComponent, useEffect } from 'react'
+
+import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 
@@ -111,8 +111,18 @@ function Activity({ activitySessions }) {
 }
 
 Activity.propTypes = {
-    activitySessions: PropTypes.array,
+    activitySessions: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.string,
+        kilogram: PropTypes.number,
+        calories: PropTypes.number,
+    }))
 }
+
+// PropTypes.shape({
+//     day: PropTypes.string,
+//     kilogram: PropTypes.number,
+//     calories: PropTypes.number,
+// }),
 
 export default Activity
 

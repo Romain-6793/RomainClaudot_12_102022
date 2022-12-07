@@ -4,7 +4,7 @@ import '../../../styles/Hero/MainInfo/Skills.css'
 import PropTypes from 'prop-types'
 
 // eslint-disable-next-line no-unused-vars
-import React, { PureComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
 /**
@@ -66,7 +66,11 @@ function Skills({ skillData }) {
 }
 
 Skills.propTypes = {
-    skillData: PropTypes.array,
+    skillData: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.number,
+        kind: PropTypes.number,
+
+    }))
 }
 
 export default Skills

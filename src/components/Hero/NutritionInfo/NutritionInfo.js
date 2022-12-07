@@ -37,7 +37,7 @@ function NutritionInfo({ keyData }) {
 }
 
 NutritionInfo.propTypes = {
-    keyData: PropTypes.object
+    keyData: PropTypes.objectOf(PropTypes.number)
 }
 
 export default NutritionInfo

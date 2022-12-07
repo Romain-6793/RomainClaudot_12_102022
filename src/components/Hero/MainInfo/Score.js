@@ -1,7 +1,7 @@
 
 import '../../../styles/Hero/MainInfo/Score.css'
-// eslint-disable-next-line no-unused-vars
-import React, { PureComponent } from 'react';
+
+import React from 'react';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types'
 
