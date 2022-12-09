@@ -28,42 +28,17 @@ function Hero() {
         `${BASE_URL}/performance`,
     ]
     // eslint-disable-next-line no-unused-vars
-    const { response, newUser, loading, hasError } = useFetchMultiple(BASE_URL, URLS)
-
-
-    /** Here is our default data, to use if response is null */
+    const { response, user, loading, hasError } = useFetchMultiple(BASE_URL, URLS)
 
 
     /** Here are our model classes, used to format data the right way. Classes and new user are imported
      * from different files.
      */
 
-    // const modelizedUser = new Model(user);
-    const modelizedNewUser = new Model(newUser.user)
-    // const modelizedNewUser = new Model(newUser)
-    console.log(modelizedNewUser)
-    // modelizedUser.firstname = 'lulu'
-
-    // modelizedNewUser.firstName = newUser.user.firstName
-    // console.log(modelizedNewUser.firstName)
-    // modelizedNewUser.sessions = newUser.user.sessions
-    // console.log(modelizedNewUser.sessions)
-    // modelizedNewUser.activitySessions = newUser.user.sessions.activitySessions
-    // modelizedNewUser.averageSessions = newUser.user.sessions.averageSessions
-    // modelizedNewUser.skillData = newUser.user.skillData
-    // modelizedNewUser.todayScore = newUser.user.todayScore
-    // modelizedNewUser.keyData = newUser.user.keyData
-
-    modelizedNewUser.firstName = newUser.firstName
-    console.log(modelizedNewUser.firstName)
-    modelizedNewUser.sessions = newUser.metadatas.sessions
-    console.log(modelizedNewUser.sessions)
-    modelizedNewUser.activitySessions = newUser.metadatas.sessions.activitySessions
-    modelizedNewUser.averageSessions = newUser.metadatas.sessions.averageSessions
-    modelizedNewUser.skillData = newUser.metadatas.skillData
-    modelizedNewUser.todayScore = newUser.metadatas.todayScore
-    modelizedNewUser.keyData = newUser.metadatas.keyData
-
+    console.log(user)
+    const modelUser = new Model(user)
+    const finalUser = modelUser.user
+    console.log(finalUser)
 
     /**
      * Conditional render depending on response, loading and error
@@ -77,17 +52,22 @@ function Hero() {
     }
     return (
         <div className="hero">
-            <Banner firstName={modelizedNewUser.firstName} />
+            <Banner firstName={finalUser.firstName} />
             <MainInfo
-                activitySessions={modelizedNewUser.sessions.activitySessions}
-                averageSessions={modelizedNewUser.sessions.averageSessions}
-                skillData={modelizedNewUser.skillData}
-                score={modelizedNewUser.todayScore}
+                activitySessions={finalUser.activitySessions}
+                averageSessions={finalUser.averageSessions}
+                skillData={finalUser.skillData}
+                score={finalUser.todayScore}
             />
-            <NutritionInfo keyData={modelizedNewUser.keyData} />
+            <NutritionInfo keyData={finalUser.keyData} />
         </div>
     )
-    // return response === null ? (
+
+}
+
+export default Hero
+
+// return response === null ? (
     //     <div className="hero">
     //         <Banner firstName={modelizedUser.firstName} />
     //         <MainInfo
@@ -110,7 +90,3 @@ function Hero() {
     //         <NutritionInfo keyData={modelizedNewUser.metadatas.keyData} />
     //     </div>
     // )
-
-}
-
-export default Hero

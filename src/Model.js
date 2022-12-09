@@ -1,10 +1,5 @@
 
-
-
 /** Model class allowing to format data the way we need. Imported in Hero.js */
-
-
-
 
 const initModel = {
     firstName: '',
@@ -21,20 +16,20 @@ const initModel = {
 
 class Model {
 
+
+    //Here, data, will be my newUser (or NewUser.user ?)
+
     constructor(data) {
         this.data = data;
         console.log(this.data)
-        this.user = this._buildUSerModel()
-
+        this.user = initModel;
+        this._buildUSerModel();
     }
+
     _buildUSerModel = () => {
-        if (!this.data) {
-            console.log(initModel)
-            return initModel;
-        }
-        else {
-            console.log(this.setuserData(this.data))
-            return this.setuserData(this.data)
+        if (this.data) {
+            //return this.setuserData(this.data)
+            this.setuserData(this.data)
         }
 
     }
@@ -43,14 +38,13 @@ class Model {
 
     setuserData(newData) {
         this.user.firstName = newData.firstName;
-        console.log(this.user.firstName)
         this.user.sessions = newData.metadatas.sessions;
         this.user.activitySessions = newData.metadatas.sessions.activitySessions;
         this.user.averageSessions = newData.metadatas.sessions.averageSessions;
         this.user.todayScore = newData.metadatas.todayScore;
         this.user.skillData = newData.metadatas.skillData;
         this.user.keyData = newData.metadatas.keyData;
-        // this.user.id = newData.id;
+        this.user.id = newData.id;
 
     }
 

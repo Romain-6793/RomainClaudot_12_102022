@@ -14,8 +14,9 @@ function useFetchMultiple(url, urls) {
     const [response, setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
     const [hasError, setHasError] = useState(null)
-    const [newUser, setNewUser] = useState({
+    const [user, setUser] = useState({
         firstName: "Karl",
+        id: 12,
         metadatas: {
             keyData: { calorieCount: 1930, proteinCount: 155, carbohydrateCount: 290, lipidCount: 50 },
             todayScore: 0.12,
@@ -61,11 +62,13 @@ function useFetchMultiple(url, urls) {
         )
             .then((data) => {
                 setResponse(data)
+                console.log(data)
                 setHasError(null)
-                setNewUser(prev => {
+                setUser(prev => {
                     return {
                         // The following line with the spread allows to reccover prev and to overwrite it.
                         ...prev,
+                        id: data[0].data.id,
                         firstName: data[0].data.userInfos.firstName,
                         metadatas: {
                             sessions: {
@@ -90,7 +93,7 @@ function useFetchMultiple(url, urls) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url])
 
-    return { response, newUser, loading, hasError }
+    return { response, user, loading, hasError }
 
 
 }
