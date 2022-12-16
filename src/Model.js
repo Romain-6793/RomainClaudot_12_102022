@@ -21,14 +21,12 @@ class Model {
 
     constructor(data) {
         this.data = data;
-        console.log(this.data)
         this.user = initModel;
         this._buildUSerModel();
     }
 
     _buildUSerModel = () => {
         if (this.data) {
-            //return this.setuserData(this.data)
             this.setuserData(this.data)
         }
 
@@ -47,14 +45,6 @@ class Model {
         this.user.id = newData.id;
 
     }
-
-
-
-
-    // set firstName(newData) {
-    //     this.user.firstName = newData;
-    // }
-
 
 }
 
